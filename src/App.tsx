@@ -3,6 +3,7 @@ import { API_BASE_URL } from './api/client'
 import './App.css'
 import { HeroHeader } from './components/HeroHeader'
 import { LibraryPanel } from './components/LibraryPanel'
+import { NoticeBanner } from './components/NoticeBanner'
 import type { UiNotice } from './types/api'
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
   return (
     <div className="app-shell">
       <HeroHeader apiBaseUrl={API_BASE_URL} />
+
+      <NoticeBanner notice={notice} />
 
       <main className="layout">
         <LibraryPanel
