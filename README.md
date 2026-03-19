@@ -277,7 +277,3 @@ export default defineConfig([
   - Better analytics around watch progress
   - Unit and integration tests for key flows
   - Optimistic UI updates for smoother interactions
-
-  ## License
-
-  Add your preferred license here (MIT, Apache-2.0, etc.).
