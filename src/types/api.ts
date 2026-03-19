@@ -10,6 +10,7 @@ export interface PaginationMeta {
 export interface PaginatedResponse<T> {
   data: T[]
   meta: PaginationMeta
+  summary: string | null
 }
 
 export interface SearchItem {
@@ -47,6 +48,16 @@ export interface Review {
   rating: number
   comment: string
   created_at: string
+}
+
+export interface RecommendationItem {
+  title: string
+  media_type: MediaType
+  reason: string
+}
+
+export interface RecommendationResponse {
+  recommendations: RecommendationItem[]
 }
 
 export interface AddLibraryPayload {
