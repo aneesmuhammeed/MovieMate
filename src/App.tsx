@@ -5,7 +5,8 @@ import { HeroHeader } from './components/HeroHeader'
 import { LibraryPanel } from './components/LibraryPanel'
 import { NoticeBanner } from './components/NoticeBanner'
 import { ReviewPanel } from './components/ReviewPanel'
-import type { UiNotice, MediaType } from './types/api'
+import { SearchAddPanel } from './components/SearchAddPanel'
+import type { MediaType, UiNotice } from './types/api'
 
 interface ReviewTarget {
   tmdbId: number
@@ -19,30 +20,34 @@ function App() {
   const [reviewTarget, setReviewTarget] = useState<ReviewTarget | null>(null)
 
   function handleLibraryChanged(): void {
-    setReloadToken((prev) => prev + 1)
+    setReloadToken((previous) => previous + 1)
   }
 
   return (
     <div className="app-shell">
       <HeroHeader apiBaseUrl={API_BASE_URL} />
-
       <NoticeBanner notice={notice} />
 
       <main className="layout">
+        <SearchAddPanel
+          onNotice={setNotice}
+          onLibraryChanged={handleLibraryChanged}
+        />
+
         <div className="stacked-panels">
           <LibraryPanel
             reloadToken={reloadToken}
             onNotice={setNotice}
             onPickReviewTarget={setReviewTarget}
           />
-
-          <ReviewPanel
-            selectedTarget={reviewTarget}
-            onNotice={setNotice}
-            reloadToken={reloadToken}
-          />
+          <ReviewPanel selectedTarget={reviewTarget} onNotice={setNotice} reloadToken={reloadToken} />
         </div>
       </main>
+
+      <footer className="footer-note">
+        Built for current backend contract: versioned API routes, pagination, filtering, validation,
+        and rate-limit aware UX.
+      </footer>
     </div>
   )
 }
