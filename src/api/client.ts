@@ -5,6 +5,7 @@ import type {
   LibraryItem,
   PaginatedResponse,
   ProgressResponse,
+  RecommendationResponse,
   Review,
   ReviewListParams,
   SearchItem,
@@ -130,6 +131,9 @@ export const api = {
       params.set('type', type)
     }
     return request<PaginatedResponse<Review>>(`/reviews/${movieId}?${params.toString()}`)
+  },
+  getRecommendations: () => {
+    return request<RecommendationResponse>('/recommended')
   },
 }
 
